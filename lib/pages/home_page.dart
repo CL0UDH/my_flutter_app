@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/circle_container.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomMenu(),
       body: SafeArea(
         top: true,
         bottom: true,
@@ -65,4 +68,4 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// TODO: Continuar en la seccion 2: 31. Bottom Menu parte 1
+// TODO: Continuar en la seccion 2: 31. Bottom Menu parte 1 minuto 8:44
