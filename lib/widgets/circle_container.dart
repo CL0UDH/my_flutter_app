@@ -10,12 +10,11 @@ class CircleContainer extends StatelessWidget {
   ) 
   : 
   assert(child != null),
-  assert(width != null && width >= 100),
-  assert(height != null && width >= 100);
+  assert(width != null && width >= 50),
+  assert(height != null && width >= 50);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       width: width,
       height: height,
