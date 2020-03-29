@@ -42,4 +42,4 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// TODO: Continuar en la seccion 2: 31. Bottom Menu parte 1 minuto 8:44
+// TODO: Continuar en la seccion 2: 34. FlatButton y CupertinoButton
