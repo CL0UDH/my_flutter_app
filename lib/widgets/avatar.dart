@@ -6,7 +6,6 @@ import 'circle_container.dart';
 class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       width: 200,
       height: 200,
@@ -17,7 +16,7 @@ class Avatar extends StatelessWidget {
           ),
           Positioned(
             child: CircleContainer(
-              child: Icon(Icons.edit),
+              child: Icon(Icons.edit, color: Colors.blue,),
               size: 60,
             ),
             right: 0,
