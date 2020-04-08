@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:my_flutter_app/pages/chat_page.dart';
 import 'package:my_flutter_app/widgets/avatar.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/cronometer.dart';
@@ -50,7 +51,17 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 // AppBar
-                MyAppbar(),
+                MyAppbar(
+                  rightIcon: 'https://image.flaticon.com/icons/svg/2598/2598851.svg',
+                  leftIcon: 'https://image.flaticon.com/icons/svg/1518/1518155.svg',
+                  onRightClick: (){
+                    final route = MaterialPageRoute(builder: (BuildContext _) => ChatPage(username: "Jorge Luis",));
+                    Navigator.push(context, route);
+                  },
+                  onLeftClick: (){
+                    Navigator.pushNamed(context, 'images');
+                  },
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,11 +100,9 @@ class _HomePageState extends State<HomePage> {
                         height: 10,
                       ),
                       CupertinoButton(
-                        child: Text("New fontSize"),
+                        child: Text("Go to Chat"),
                         onPressed: () {
-                          setState(() {
-                            _fontSize += 1;
-                          });
+                          
                         },
                         color: Colors.green,
                       ),
@@ -107,4 +116,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 43. Navegando entre pantallas - parte 1
+// TODO: Continuar en la seccion 2: 47. Navegando entre pantallas - parte 5

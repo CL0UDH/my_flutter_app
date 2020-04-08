@@ -1,10 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_flutter_app/pages/chat_page.dart';
 
 class MyAppbar extends StatelessWidget {
-  const MyAppbar({Key key}) : super(key: key);
+  final leftIcon, rightIcon;
+  final VoidCallback onLeftClick, onRightClick;
 
+  const MyAppbar(
+      {Key key,
+      @required this.leftIcon,
+      @required this.rightIcon,
+      this.onLeftClick,
+      this.onRightClick})
+      : super(key: key);
+  // 'https://image.flaticon.com/icons/svg/1518/1518155.svg'
+  // 'https://image.flaticon.com/icons/svg/2598/2598851.svg'
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,11 +24,11 @@ class MyAppbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CupertinoButton(
+            onPressed: onLeftClick,
             child: SvgPicture.network(
-              'https://image.flaticon.com/icons/svg/1518/1518155.svg',
+              leftIcon,
               width: 30,
             ),
-            onPressed: () {},
             padding: EdgeInsets.all(15),
           ),
           Text(
@@ -25,14 +36,14 @@ class MyAppbar extends StatelessWidget {
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           CupertinoButton(
-            onPressed: () {},
+            onPressed: onRightClick,
             padding: EdgeInsets.all(0),
             child: Stack(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: SvgPicture.network(
-                    'https://image.flaticon.com/icons/svg/2598/2598851.svg',
+                    rightIcon,
                     width: 30,
                   ),
                 ),
