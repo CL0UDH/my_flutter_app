@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/pages/images_page.dart';
+import 'package:my_flutter_app/pages/splash_page.dart';
 import 'pages/home_page.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +13,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     return MaterialApp(
-      home: HomePage(),
+      home: SplashPage(),
+      routes: {
+        'home': (BuildContext context) => HomePage(),
+        'images': (_) => ImagesPage(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
