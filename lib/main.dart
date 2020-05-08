@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: SplashPage(),
       routes: {
-        'home': (BuildContext context) => HomePage(),
-        'images': (_) => ImagesPage(),
+        HomePage.routeName: (BuildContext context) => HomePage(),
+        ImagesPage.routeName: (_) => ImagesPage(),
       },
       debugShowCheckedModeBanner: false,
     );

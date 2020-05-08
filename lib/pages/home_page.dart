@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_flutter_app/pages/chat_page.dart';
+import 'package:my_flutter_app/pages/images_page.dart';
 import 'package:my_flutter_app/widgets/avatar.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/cronometer.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
 
 class HomePage extends StatefulWidget {
+  static final routeName = 'home';
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -59,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(context, route);
                   },
                   onLeftClick: (){
-                    Navigator.pushNamed(context, 'images');
+                    Navigator.pushNamed(context, ImagesPage.routeName, arguments: ImagesPageArgs(username: 'Jorge', isActive: true));
                   },
                 ),
                 Expanded(
@@ -116,4 +118,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 47. Navegando entre pantallas - parte 5
+// TODO: Continuar en la seccion 2: 48 Creando un boton personalizado
