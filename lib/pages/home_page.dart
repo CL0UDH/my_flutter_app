@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_flutter_app/pages/chat_page.dart';
 import 'package:my_flutter_app/pages/images_page.dart';
+import 'package:my_flutter_app/pages/post_page.dart';
 import 'package:my_flutter_app/widgets/avatar.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/cronometer.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
+import 'package:my_flutter_app/widgets/my_btn.dart';
 
 class HomePage extends StatefulWidget {
   static final routeName = 'home';
@@ -54,14 +56,21 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 // AppBar
                 MyAppbar(
-                  rightIcon: 'https://image.flaticon.com/icons/svg/2598/2598851.svg',
-                  leftIcon: 'https://image.flaticon.com/icons/svg/1518/1518155.svg',
-                  onRightClick: (){
-                    final route = MaterialPageRoute(builder: (BuildContext _) => ChatPage(username: "Jorge Luis",));
+                  rightIcon:
+                      'https://image.flaticon.com/icons/svg/2598/2598851.svg',
+                  leftIcon:
+                      'https://image.flaticon.com/icons/svg/1518/1518155.svg',
+                  onRightClick: () {
+                    final route = MaterialPageRoute(
+                        builder: (BuildContext _) => ChatPage(
+                              username: "Jorge Luis",
+                            ));
                     Navigator.push(context, route);
                   },
-                  onLeftClick: (){
-                    Navigator.pushNamed(context, ImagesPage.routeName, arguments: ImagesPageArgs(username: 'Jorge', isActive: true));
+                  onLeftClick: () {
+                    Navigator.pushNamed(context, ImagesPage.routeName,
+                        arguments:
+                            ImagesPageArgs(username: 'Jorge', isActive: true));
                   },
                 ),
                 Expanded(
@@ -89,25 +98,31 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 20,
                       ),
-                      CupertinoButton(
-                        child: Text("Enabled: $_isEnable"),
+                      // CupertinoButton(
+                      //   child: Text("Enabled: $_isEnable"),
+                      //   onPressed: () {
+                      //     setState(() {
+                      //       _isEnable = !_isEnable;
+                      //     });
+                      //   },
+                      //   color: Colors.blue,
+                      // ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // CupertinoButton(
+                      //   child: Text("Go to Chat"),
+                      //   onPressed: () {
+
+                      //   },
+                      //   color: Colors.green,
+                      // ),
+                      MyBtn(
+                        label: "My Posts",
                         onPressed: () {
-                          setState(() {
-                            _isEnable = !_isEnable;
-                          });
+                          Navigator.pushNamed(context, PostsPage.routeName);
                         },
-                        color: Colors.blue,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      CupertinoButton(
-                        child: Text("Go to Chat"),
-                        onPressed: () {
-                          
-                        },
-                        color: Colors.green,
-                      ),
+                      )
                     ],
                   ),
                 )
@@ -118,4 +133,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 48 Creando un boton personalizado
+// TODO: Continuar en la seccion 2: 49 El Widget ListView Parte 1

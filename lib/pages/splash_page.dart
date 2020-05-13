@@ -13,7 +13,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> with AfterLayoutMixin {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     
   }
