@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_flutter_app/pages/chat_page.dart';
 
 class MyAppbar extends StatelessWidget {
   final leftIcon, rightIcon;

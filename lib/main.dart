@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/pages/images_page.dart';
+import 'package:my_flutter_app/pages/post_page.dart';
 import 'package:my_flutter_app/pages/splash_page.dart';
 import 'pages/home_page.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (BuildContext context) => HomePage(),
         ImagesPage.routeName: (_) => ImagesPage(),
+        PostsPage.routeName: (_) => PostsPage(),
       },
       debugShowCheckedModeBanner: false,
     );
