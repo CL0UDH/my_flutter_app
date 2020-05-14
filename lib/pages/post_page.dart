@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/utils/fake_list.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
 
 class PostsPage extends StatefulWidget {
@@ -25,6 +26,21 @@ class _PostsPageState extends State<PostsPage> {
                     'https://image.flaticon.com/icons/svg/2598/2598851.svg',
                 leftIcon: 'https://image.flaticon.com/icons/svg/747/747872.svg',
                 onLeftClick: () => Navigator.pop(context),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int position) {
+                    final String item = fakeList[position];
+                    return ListTile(
+                      title: Text(item),
+                      subtitle: Text(DateTime.now().toString()),
+                      leading: Icon(Icons.star_border),
+                      onTap: (){},
+                      onLongPress: (){},
+                    );
+                  },
+                  itemCount: fakeList.length,
+                ),
               ),
             ],
           ),
