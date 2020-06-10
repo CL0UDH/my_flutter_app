@@ -11,6 +11,8 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
+
+  List<String> _data = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,20 +28,29 @@ class _PostsPageState extends State<PostsPage> {
                     'https://image.flaticon.com/icons/svg/2598/2598851.svg',
                 leftIcon: 'https://image.flaticon.com/icons/svg/747/747872.svg',
                 onLeftClick: () => Navigator.pop(context),
+                onRightClick: () {
+                  setState(() {
+                    _data.add("item ${DateTime.now()}");
+                  });
+                },
               ),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int position) {
-                    final String item = fakeList[position];
+                    final String item = _data[position];
                     return ListTile(
                       title: Text(item),
-                      subtitle: Text(DateTime.now().toString()),
+                      subtitle: Text("subtitulo"),
                       leading: Icon(Icons.star_border),
                       onTap: (){},
-                      onLongPress: (){},
+                      onLongPress: (){
+                        setState(() {
+                          _data.removeAt(position);
+                        });
+                      },
                     );
                   },
-                  itemCount: fakeList.length,
+                  itemCount: _data.length,
                 ),
               ),
             ],
