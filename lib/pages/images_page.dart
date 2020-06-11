@@ -42,18 +42,22 @@ class _ImagesPageState extends State<ImagesPage> {
                         width: 300,
                         height: 300,
                         color: Colors.blue,
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              'https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg',
+                        child: Image.asset(
+                          'assets/cover.jpg',
                           fit: BoxFit.cover,
-                          placeholder: (_, __) {
-                            return Center(
-                              child: CupertinoActivityIndicator(
-                                radius: 15,
-                              ),
-                            );
-                          },
                         ),
+                        // child: CachedNetworkImage(
+                        //   imageUrl:
+                        //       'https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg',
+                        //   fit: BoxFit.cover,
+                        //   placeholder: (_, __) {
+                        //     return Center(
+                        //       child: CupertinoActivityIndicator(
+                        //         radius: 15,
+                        //       ),
+                        //     );
+                        //   },
+                        // ),
                       ),
                       Positioned(
                         right: 85,
