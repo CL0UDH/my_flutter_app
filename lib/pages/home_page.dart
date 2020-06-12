@@ -18,11 +18,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isEnable = false;
   double _fontSize = 20;
+  int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomMenu(
+        currentPage: _currentPage,
+        onChanged: (int newCurrentPage) {
+          setState(() {
+            _currentPage = newCurrentPage;
+          });
+        },
         items: [
           BottomMenuItem(
             iconPath: 'assets/icons/home.svg',
@@ -133,4 +140,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 54. Bottom Menu parte 4
+// TODO: Continuar en la seccion 2: 55. El widget PageView - parte 1

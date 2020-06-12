@@ -10,9 +10,12 @@ class BottomMenuItem {
 
 class BottomMenu extends StatelessWidget {
   final List<BottomMenuItem> items;
+  final int currentPage;
+  final void Function(int) onChanged;
 
-  const BottomMenu({@required this.items})
-      : assert(items != null && items.length > 0);
+  const BottomMenu({@required this.items,@required this.currentPage, this.onChanged})
+      : assert(items != null && items.length > 0),
+        assert(currentPage != null && currentPage >= 0 );
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class BottomMenu extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(items.length, (index) {
+            final bool isActive = index == currentPage;
             final BottomMenuItem item = items[index];
 
             return Expanded(
@@ -41,11 +45,11 @@ class BottomMenu extends StatelessWidget {
                       ),
                       Text(
                         item.label,
-                        style: TextStyle(fontSize: 12, color: Colors.black),
+                        style: TextStyle(fontSize: 12, color: isActive ? Colors.blue : Colors.black,),
                       ),
                     ],
                   ),
-                  onPressed: () => print(item.label),
+                  onPressed: () => onChanged(index),
                 ),
               ),
             );
