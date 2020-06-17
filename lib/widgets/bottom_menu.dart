@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomMenuItem {
   final String iconPath, label;
+  final Widget content;
 
-  BottomMenuItem({@required this.iconPath, @required this.label});
+  BottomMenuItem({@required this.iconPath, @required this.label, @required this.content});
 }
 
 class BottomMenu extends StatelessWidget {
