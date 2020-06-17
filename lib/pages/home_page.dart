@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_flutter_app/pages/chat_page.dart';
 import 'package:my_flutter_app/pages/images_page.dart';
-import 'package:my_flutter_app/pages/post_page.dart';
-import 'package:my_flutter_app/widgets/avatar.dart';
+import 'package:my_flutter_app/pages/page_home_tabs/history_tab.dart';
+import 'package:my_flutter_app/pages/page_home_tabs/home_tab.dart';
+import 'package:my_flutter_app/pages/page_home_tabs/more_tab.dart';
+import 'package:my_flutter_app/pages/page_home_tabs/oferts_tab.dart';
+import 'package:my_flutter_app/pages/page_home_tabs/profile_tab.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
-import 'package:my_flutter_app/widgets/cronometer.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
-import 'package:my_flutter_app/widgets/my_btn.dart';
 
 class HomePage extends StatefulWidget {
   static final routeName = 'home';
@@ -16,9 +17,45 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isEnable = false;
-  double _fontSize = 20;
   int _currentPage = 0;
+  final _menu = [
+    BottomMenuItem(
+      iconPath: 'assets/icons/home.svg',
+      label: 'Home',
+      content: HomeTab(),
+    ),
+    BottomMenuItem(
+      iconPath: 'assets/icons/shop.svg',
+      label: 'Shop',
+      content: OfertsTab(),
+    ),
+    BottomMenuItem(
+      iconPath: 'assets/icons/profile.svg',
+      label: 'Profile',
+      content: ProfileTab(),
+    ),
+    BottomMenuItem(
+      iconPath: 'assets/icons/history.svg',
+      label: 'History',
+      content: HistoryTab(),
+    ),
+    BottomMenuItem(
+      iconPath: 'assets/icons/menu.svg',
+      label: 'More',
+      content: MoreTab(),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,28 +67,7 @@ class _HomePageState extends State<HomePage> {
             _currentPage = newCurrentPage;
           });
         },
-        items: [
-          BottomMenuItem(
-            iconPath: 'assets/icons/home.svg',
-            label: 'Home',
-          ),
-          BottomMenuItem(
-            iconPath: 'assets/icons/shop.svg',
-            label: 'Shop',
-          ),
-          BottomMenuItem(
-            iconPath: 'assets/icons/profile.svg',
-            label: 'Profile',
-          ),
-          BottomMenuItem(
-            iconPath: 'assets/icons/history.svg',
-            label: 'History',
-          ),
-          BottomMenuItem(
-            iconPath: 'assets/icons/menu.svg',
-            label: 'More',
-          ),
-        ],
+        items: _menu,
       ),
       body: SafeArea(
         top: true,
@@ -81,58 +97,10 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      Avatar(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text("Bienvenido"),
-                      Text(
-                        "Jorge Pescador",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      _isEnable == true
-                          ? Cronometer(
-                              initTime: 90,
-                              fontSize: _fontSize,
-                            )
-                          : Container(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // CupertinoButton(
-                      //   child: Text("Enabled: $_isEnable"),
-                      //   onPressed: () {
-                      //     setState(() {
-                      //       _isEnable = !_isEnable;
-                      //     });
-                      //   },
-                      //   color: Colors.blue,
-                      // ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // CupertinoButton(
-                      //   child: Text("Go to Chat"),
-                      //   onPressed: () {
-
-                      //   },
-                      //   color: Colors.green,
-                      // ),
-                      MyBtn(
-                        label: "My Posts",
-                        onPressed: () {
-                          Navigator.pushNamed(context, PostsPage.routeName);
-                        },
-                      )
-                    ],
-                  ),
-                )
+                    child: IndexedStack(
+                  children: _menu.map<Widget>((item) => item.content).toList(),
+                  index: _currentPage,
+                ))
               ],
             )),
       ),
@@ -140,4 +108,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 55. El widget PageView - parte 1
+// TODO: Continuar en la seccion 2: 57. Creando un PageView con el widget IndexedStack
