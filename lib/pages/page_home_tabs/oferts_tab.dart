@@ -11,10 +11,8 @@ class _OfertsTabState extends State<OfertsTab> {
   @override
   Widget build(BuildContext context) {
     print("Shop");
-    return Container(
-       child: Center(
-         child: Text("Shop"),
-       ),
+    return Center(
+      child: Text("Shop"),
     );
   }
 }
