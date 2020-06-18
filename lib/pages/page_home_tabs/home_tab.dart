@@ -41,15 +41,15 @@ class _HomeTabState extends State<HomeTab> {
           SizedBox(
             height: 10,
           ),
-          // CupertinoButton(
-          //   child: Text("Enabled: $_isEnable"),
-          //   onPressed: () {
-          //     setState(() {
-          //       _isEnable = !_isEnable;
-          //     });
-          //   },
-          //   color: Colors.blue,
-          // ),
+          CupertinoButton(
+            child: Text("Enabled: $_isEnable"),
+            onPressed: () {
+              setState(() {
+                _isEnable = !_isEnable;
+              });
+            },
+            color: Colors.blue,
+          ),
           // SizedBox(
           //   height: 10,
           // ),

@@ -35,43 +35,20 @@ class _ImagesPageState extends State<ImagesPage> {
                 onLeftClick: () => Navigator.pop(context),
               ),
               Expanded(
-                child: Center(
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 300,
-                        height: 300,
-                        color: Colors.blue,
-                        child: Image.asset(
-                          'assets/cover.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                        // child: CachedNetworkImage(
-                        //   imageUrl:
-                        //       'https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg',
-                        //   fit: BoxFit.cover,
-                        //   placeholder: (_, __) {
-                        //     return Center(
-                        //       child: CupertinoActivityIndicator(
-                        //         radius: 15,
-                        //       ),
-                        //     );
-                        //   },
-                        // ),
-                      ),
-                      Positioned(
-                        right: 85,
-                        top: 95,
-                        child: Text(
-                          " HOLA\nMUNDO",
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ), 
+                  itemBuilder: (_, index){
+                    return Container(
+                      color: Colors.black12,
+                      alignment: Alignment.center,
+                      child: Text("${index+1}"),
+                    );
+                  },
+                  itemCount: 100,
                 ),
               ),
             ],

@@ -9,6 +9,7 @@ import 'package:my_flutter_app/pages/page_home_tabs/oferts_tab.dart';
 import 'package:my_flutter_app/pages/page_home_tabs/profile_tab.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
+import 'package:my_flutter_app/widgets/my_page_view.dart';
 
 class HomePage extends StatefulWidget {
   static final routeName = 'home';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
+  
   final _menu = [
     BottomMenuItem(
       iconPath: 'assets/icons/home.svg',
@@ -97,10 +99,11 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 Expanded(
-                    child: IndexedStack(
-                  children: _menu.map<Widget>((item) => item.content).toList(),
-                  index: _currentPage,
-                ))
+                  child: MyPageView(
+                    children: _menu.map<Widget>((item) => item.content).toList(),
+                    currentPage: _currentPage,
+                  ),
+                ),
               ],
             )),
       ),
@@ -108,4 +111,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 57. Creando un PageView con el widget IndexedStack
+// TODO: Continuar en la seccion 2: 59. El Widget LayoutBuilder
