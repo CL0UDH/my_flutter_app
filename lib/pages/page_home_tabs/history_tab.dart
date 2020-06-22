@@ -11,10 +11,13 @@ class _HistoryTabState extends State<HistoryTab> {
   @override
   Widget build(BuildContext context) {
     print("History");
-    return Container(
-       child: Center(
-         child: Text("Historial"),
-       ),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints){
+        return Container(
+          color: Colors.blue,
+          height: constraints.maxHeight/3,
+        );
+      }
     );
   }
 }

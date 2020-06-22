@@ -111,4 +111,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 59. El Widget LayoutBuilder
+// TODO: Continuar en la seccion 2: 60. Campos de texto parte 1
