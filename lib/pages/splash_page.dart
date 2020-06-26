@@ -1,7 +1,8 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/pages/home_page.dart';
+
+import 'login_page.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
@@ -22,7 +23,7 @@ class _SplashPageState extends State<SplashPage> with AfterLayoutMixin {
     
     Future.delayed(Duration(seconds: 2)).then((_){
       print("Ir a Home");
-      Navigator.pushReplacementNamed(context, HomePage.routeName);
+      Navigator.pushReplacementNamed(context, LoginPage.routeName);
     });
   }
 
