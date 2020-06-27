@@ -38,10 +38,11 @@ class MyBtn extends StatelessWidget {
           boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 5)],
         ),
       ),
-      onPressed: (){
-        FocusScope.of(context).unfocus();
-        this.onPressed;
-      }
+      onPressed: this.onPressed,
+      // onPressed: (){
+      //   FocusScope.of(context).unfocus();
+      //   this.onPressed;
+      // }
     );
   }
 }
