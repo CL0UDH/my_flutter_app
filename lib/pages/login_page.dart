@@ -10,9 +10,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   FocusNode _focusNodePassword = FocusNode();
-  String _email = '', _password = '', _errorEmail, _errorPassword;
+  GlobalKey<FormState> _formKey = GlobalKey();
+  String _email = '', _password = '';
 
   @override
   void dispose() {
@@ -20,26 +20,28 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  _submit(){
+  _submit() {
     FocusScope.of(context).unfocus();
-    _errorEmail = _validateEmail();
-    _errorPassword = _validatePassword();
-
-    if(_errorEmail != null || _errorPassword != null){
-      setState(() {});
-      return;
+    final bool isValid = _formKey.currentState.validate();
+    if(isValid){
+      
     }
-    setState(() {});
   }
 
-  String _validateEmail(){
-    if(_email.isNotEmpty && _email.contains("@")) return null;
-    else return "Invalid E-mail";
+  String _validateEmail(String email) {
+    if (email.isNotEmpty && email.contains("@")) {
+      _email = email;
+      return null;
+    } else
+      return "Invalid E-mail";
   }
 
-  String _validatePassword(){
-    if(_password.isNotEmpty && _password.length > 4 ) return null;
-    else return "Invalid password";
+  String _validatePassword(String password) {
+    if (password.isNotEmpty && password.length > 4) {
+      _password = password;
+      return null;
+    } else
+      return "Invalid password";
   }
 
   @override
@@ -58,61 +60,62 @@ class _LoginPageState extends State<LoginPage> {
                   maxWidth: 300,
                   minWidth: 200,
                 ),
-                child: Column(
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "example@domain.com",
-                        labelText: "E-mail",
-                        hintStyle: TextStyle(
-                          color: Colors.black38,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "example@domain.com",
+                          labelText: "E-mail",
+                          hintStyle: TextStyle(
+                            color: Colors.black38,
+                          ),
                         ),
-                        errorText: _errorEmail,
+                        keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.light,
+                        textInputAction: TextInputAction.next,
+                        validator: _validateEmail,
+                        onFieldSubmitted: (String text) {
+                          _focusNodePassword.nextFocus();
+                        },
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      keyboardAppearance: Brightness.light,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (String text){
-                        _email = text;
-                      },
-                      onSubmitted: (String text){
-                        _focusNodePassword.nextFocus();
-                      },
-                    ),
-                    SizedBox(height: 10,),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "*******",
-                        labelText: "Password",
-                        hintStyle: TextStyle(
-                          color: Colors.black38,
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "*******",
+                          labelText: "Password",
+                          hintStyle: TextStyle(
+                            color: Colors.black38,
+                          ),
                         ),
-                        errorText: _errorPassword,
+                        keyboardAppearance: Brightness.light,
+                        obscureText: true,
+                        focusNode: _focusNodePassword,
+                        textInputAction: TextInputAction.send,
+                        validator: _validatePassword,
+                        onFieldSubmitted: (text) {
+                          _submit();
+                        },
                       ),
-                      keyboardAppearance: Brightness.light,
-                      obscureText: true,
-                      focusNode: _focusNodePassword,
-                      textInputAction: TextInputAction.send,
-                      onChanged: (String text){
-                        _password = text;
-                      },
-                      onSubmitted: (text){
-                        _submit();
-                      },
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    MyBtn(
-                      label: "Ingresar",
-                      textColor: Colors.black38,
-                      fullWidth: true,
-                      onPressed: _submit,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 30,
+                      ),
+                      MyBtn(
+                        label: "Ingresar",
+                        textColor: Colors.black38,
+                        fullWidth: true,
+                        onPressed: _submit,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),
