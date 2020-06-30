@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_app/widgets/my_btn.dart';
@@ -58,20 +59,39 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               height: size.height - padding.top - padding.bottom,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 60,
+                          bottom: 10,
+                        ),
+                        child: Image.network(
+                          'https://www.thesmartgroup.com.au/wp-content/uploads/2016/04/placeholder-client.png',
+                          color: Color(0xff304ffe),
+                        ),
+                      ),
+                      Text(
+                        "Flutter UI & UX",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54
+                        ),
+                      )
+                    ],
+                  ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxWidth: 300,
+                      maxWidth: 330,
                       minWidth: 200,
                     ),
                     child: Form(
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          Image.network(
-                            'https://www.thesmartgroup.com.au/wp-content/uploads/2016/04/placeholder-client.png',
-                          ),
                           TextFormField(
                             decoration: InputDecoration(
                               hintText: "example@domain.com",
@@ -133,6 +153,36 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ),
                           SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    "Olvide mi contraseña",
+                                    style: TextStyle(
+                                      color: Color(0xff304ffe),
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        width: 1,
+                                        color: Color(0xff304ffe),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                          SizedBox(
                             height: 30,
                           ),
                           MyBtn(
@@ -143,14 +193,14 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Color(0xff304ffe),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 35,
                           ),
                           Text(
                             "O inicia con",
                             style: TextStyle(color: Colors.black54),
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 20,
                           ),
                           Row(
                             children: <Widget>[
@@ -159,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                     label: "FACEBOOK",
                                     textColor: Colors.white,
                                     fullWidth: true,
-                                    onPressed: (){},
+                                    onPressed: () {},
                                     backgroundColor: Color(0xff3b5998),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 0, vertical: 18)),
@@ -172,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                                   label: "GOOGLE",
                                   textColor: Colors.white,
                                   fullWidth: true,
-                                  onPressed: (){},
+                                  onPressed: () {},
                                   backgroundColor: Color(0xffDB4437),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 0, vertical: 18),
@@ -180,12 +230,12 @@ class _LoginPageState extends State<LoginPage> {
                               )
                             ],
                           ),
+                          SizedBox(
+                            height: 30,
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
                   ),
                 ],
               ),

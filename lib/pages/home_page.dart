@@ -111,4 +111,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 64. Diseño Login - parte 2
+// TODO: Continuar en la seccion 2: 65. Shared preferences

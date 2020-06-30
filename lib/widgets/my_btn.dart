@@ -13,7 +13,8 @@ class MyBtn extends StatelessWidget {
     this.onPressed,
     this.backgroundColor,
     this.textColor,
-    this.fullWidth = false, this.padding,
+    this.fullWidth = false,
+    this.padding,
   })  : assert(label != null),
         super(key: key);
 
@@ -24,7 +25,8 @@ class MyBtn extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: Container(
         width: fullWidth ? double.infinity : null,
-        padding: this.padding ?? EdgeInsets.symmetric(horizontal: 30, vertical: 18),
+        padding:
+            this.padding ?? EdgeInsets.symmetric(horizontal: 30, vertical: 18),
         child: Text(
           this.label,
           textAlign: TextAlign.center,
@@ -37,7 +39,13 @@ class MyBtn extends StatelessWidget {
         decoration: BoxDecoration(
           color: this.backgroundColor ?? Colors.white,
           borderRadius: BorderRadius.circular(30),
-          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 5)],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black38,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
       ),
       onPressed: this.onPressed,
