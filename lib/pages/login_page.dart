@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_app/widgets/my_btn.dart';
-
+import 'package:my_flutter_app/pages/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class LoginPage extends StatefulWidget {
   static final routeName = 'login';
   LoginPage({Key key}) : super(key: key);
@@ -22,10 +23,14 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  _submit() {
+  _submit() async  {
     FocusScope.of(context).unfocus();
     final bool isValid = _formKey.currentState.validate();
-    if (isValid) {}
+    if (isValid) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool("wasLogin", true);
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
+    }
   }
 
   String _validateEmail(String email) {
@@ -183,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           MyBtn(
                             label: "INGRESAR",
@@ -193,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Color(0xff304ffe),
                           ),
                           SizedBox(
-                            height: 35,
+                            height: 24,
                           ),
                           Text(
                             "O inicia con",
@@ -231,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                         ],
                       ),

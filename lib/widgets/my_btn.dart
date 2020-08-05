@@ -42,8 +42,8 @@ class MyBtn extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black38,
-              blurRadius: 10,
-              offset: Offset(0, 5),
+              blurRadius: 2,
+              offset: Offset(0, 3),
             ),
           ],
         ),
