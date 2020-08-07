@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_flutter_app/pages/chat_page.dart';
 import 'package:my_flutter_app/pages/images_page.dart';
-import 'package:my_flutter_app/pages/page_home_tabs/history_tab.dart';
-import 'package:my_flutter_app/pages/page_home_tabs/home_tab.dart';
-import 'package:my_flutter_app/pages/page_home_tabs/more_tab.dart';
-import 'package:my_flutter_app/pages/page_home_tabs/oferts_tab.dart';
-import 'package:my_flutter_app/pages/page_home_tabs/profile_tab.dart';
+import 'package:my_flutter_app/pages/home_page_tabs/history_tab.dart';
+import 'package:my_flutter_app/pages/home_page_tabs/home_tab.dart';
+import 'package:my_flutter_app/pages/home_page_tabs/more_tab.dart';
+import 'package:my_flutter_app/pages/home_page_tabs/oferts_tab.dart';
+import 'package:my_flutter_app/pages/home_page_tabs/profile_tab.dart';
 import 'package:my_flutter_app/widgets/bottom_menu.dart';
 import 'package:my_flutter_app/widgets/my_appbar.dart';
 import 'package:my_flutter_app/widgets/my_page_view.dart';
@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
-  
+
   final _menu = [
     BottomMenuItem(
       iconPath: 'assets/icons/home.svg',
@@ -81,10 +81,8 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 // AppBar
                 MyAppbar(
-                  rightIcon:
-                      'https://image.flaticon.com/icons/svg/2598/2598851.svg',
-                  leftIcon:
-                      'https://image.flaticon.com/icons/svg/1518/1518155.svg',
+                  rightIcon: 'assets/icons/chat.svg',
+                  leftIcon: 'assets/icons/pick-image.svg',
                   onRightClick: () {
                     final route = MaterialPageRoute(
                         builder: (BuildContext _) => ChatPage(
@@ -100,7 +98,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                   child: MyPageView(
-                    children: _menu.map<Widget>((item) => item.content).toList(),
+                    children:
+                        _menu.map<Widget>((item) => item.content).toList(),
                     currentPage: _currentPage,
                   ),
                 ),
@@ -111,4 +110,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 67. Eliminando las preferencias compartidas
+// TODO: Continuar en la seccion 2: 69 Dialogos parte 1

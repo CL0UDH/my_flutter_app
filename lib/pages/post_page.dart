@@ -11,7 +11,6 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-
   List<String> _data = [];
   @override
   Widget build(BuildContext context) {
@@ -24,9 +23,8 @@ class _PostsPageState extends State<PostsPage> {
           child: Column(
             children: <Widget>[
               MyAppbar(
-                rightIcon:
-                    'https://image.flaticon.com/icons/svg/2598/2598851.svg',
-                leftIcon: 'https://image.flaticon.com/icons/svg/747/747872.svg',
+                rightIcon: 'assets/icons/chat.svg',
+                leftIcon: 'assets/icons/back.svg',
                 onLeftClick: () => Navigator.pop(context),
                 onRightClick: () {
                   setState(() {
@@ -42,8 +40,8 @@ class _PostsPageState extends State<PostsPage> {
                       title: Text(item),
                       subtitle: Text("subtitulo"),
                       leading: Icon(Icons.star_border),
-                      onTap: (){},
-                      onLongPress: (){
+                      onTap: () {},
+                      onLongPress: () {
                         setState(() {
                           _data.removeAt(position);
                         });
