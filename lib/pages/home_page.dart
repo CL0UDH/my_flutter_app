@@ -110,4 +110,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: Continuar en la seccion 2: 73 Diseñando la pestaña de más
+// TODO: Continuar en la seccion 2: 75 Input dialog - parte 1

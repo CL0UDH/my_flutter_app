@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_app/pages/login_page.dart';
 import 'package:my_flutter_app/utils/dialogs.dart';
 import 'package:my_flutter_app/widgets/avatar.dart';
@@ -65,10 +66,36 @@ class _MoreTabState extends State<MoreTab> {
               ),
             ),
             LeftRightIconButton(
+              label: 'Email',
+              leftIcon: 'assets/icons/color-email.svg',
+              onPressed: _confirm,
+              rightContent: Text(
+                "e@e.com",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            LeftRightIconButton(
+              label: 'Configuraciones de privacidad',
+              leftIcon: 'assets/icons/security.svg',
+              onPressed: _confirm,
+              rightContent: SvgPicture.asset(
+                'assets/icons/right-arrow.svg',
+                width: 20,
+                color: Colors.blueGrey[600],
+              ),
+            ),
+            LeftRightIconButton(
+              label: 'Notificaciones Push',
+              leftIcon: 'assets/icons/bell.svg',
+              onPressed: _confirm,
+              rightContent: Text("Activado", style: TextStyle(letterSpacing: 0.5),),
+            ),
+            LeftRightIconButton(
               label: 'Cerrar sesión',
               leftIcon: 'assets/icons/logout.svg',
               onPressed: _confirm,
-              rightIcon: 'assets/icons/down-arrow.svg',
             ),
           ],
         ),

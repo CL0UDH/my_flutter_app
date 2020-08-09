@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LeftRightIconButton extends StatelessWidget {
-  final String leftIcon, rightIcon, label;
+  final String leftIcon, label;
   final VoidCallback onPressed;
+  final Widget rightContent;
   const LeftRightIconButton(
-      {Key key, this.leftIcon, this.rightIcon, this.label = '', this.onPressed})
+      {Key key, this.leftIcon, this.label = '', this.onPressed, this.rightContent})
       : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class LeftRightIconButton extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 16,
+                          color: Colors.black87,
                         ),
                       ),
                     ),
@@ -46,14 +48,10 @@ class LeftRightIconButton extends StatelessWidget {
                 ],
               ),
             ),
-            if (rightIcon != null)
+            if (rightContent != null)
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: SvgPicture.asset(
-                  rightIcon,
-                  width: 25,
-                  color: Colors.blueGrey[500],
-                ),
+                child: rightContent,
               ),
           ],
         ),

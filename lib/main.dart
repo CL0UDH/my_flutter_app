@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
           LoginPage.routeName: (_) => LoginPage(),
         },
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Roboto'),
       ),
     );
   }
