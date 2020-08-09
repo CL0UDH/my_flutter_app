@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/pages/login_page.dart';
+import 'package:my_flutter_app/utils/dialogs.dart';
 import 'package:my_flutter_app/widgets/avatar.dart';
 import 'package:my_flutter_app/widgets/left_right_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,17 @@ class _MoreTabState extends State<MoreTab> {
     await prefs.clear();
     Navigator.pushNamedAndRemoveUntil(
         context, LoginPage.routeName, (_) => false);
+  }
+
+  _confirm() async {
+    final isOk = await Dialogs.confirm(
+      context,
+      body: "Está seguro que desea salir de su cuenta?",
+    );
+
+    if (isOk) {
+      _logOut();
+    }
   }
 
   @override
@@ -54,7 +66,7 @@ class _MoreTabState extends State<MoreTab> {
             LeftRightIconButton(
               label: 'Cerrar sesión',
               leftIcon: 'assets/icons/logout.svg',
-              onPressed: _logOut,
+              onPressed: _confirm,
               rightIcon: 'assets/icons/down-arrow.svg',
             ),
           ],

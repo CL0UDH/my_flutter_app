@@ -32,8 +32,8 @@ class _AvatarState extends State<Avatar> {
       child: Stack(
         children: <Widget>[
           _file == null
-              ? SvgPicture.network(
-                  'https://image.flaticon.com/icons/svg/1946/1946369.svg')
+              ? SvgPicture.asset(
+                  'assets/icons/profile.svg')
               : ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.file(

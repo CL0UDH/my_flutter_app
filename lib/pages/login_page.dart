@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_flutter_app/utils/dialogs.dart';
 import 'package:my_flutter_app/widgets/my_btn.dart';
 import 'package:my_flutter_app/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class LoginPage extends StatefulWidget {
   static final routeName = 'login';
   LoginPage({Key key}) : super(key: key);
@@ -23,13 +25,20 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  _submit() async  {
+  _submit() async {
     FocusScope.of(context).unfocus();
     final bool isValid = _formKey.currentState.validate();
-    if (isValid) {
+    if (isValid && _email == 'e@e.com' && _password == 'hola1234') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool("wasLogin", true);
       Navigator.pushReplacementNamed(context, HomePage.routeName);
+    } else {
+      await Dialogs.alert(
+        context,
+        title: "ERROR",
+        body: "Email o contraseña incorrectos",
+      );
+      print("lalalala");
     }
   }
 
@@ -81,10 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         "Flutter UI & UX",
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54
-                        ),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54),
                       )
                     ],
                   ),
