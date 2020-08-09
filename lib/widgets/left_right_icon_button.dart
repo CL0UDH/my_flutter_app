@@ -52,6 +52,7 @@ class LeftRightIconButton extends StatelessWidget {
                 child: SvgPicture.asset(
                   rightIcon,
                   width: 25,
+                  color: Colors.blueGrey[500],
                 ),
               ),
           ],
