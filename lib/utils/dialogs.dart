@@ -40,28 +40,35 @@ class Dialogs {
     String cancelText = "Cancelar",
   }) async {
     final Completer<bool> c = Completer();
-    showDialog(
+
+    showCupertinoModalPopup(
       context: context,
-      barrierDismissible: false,
       builder: (_) {
-        return AlertDialog(
-          title: title != null ? Text(title) : null,
-          content: body != null ? Text(body) : null,
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-                c.complete(true);
-              },
-              child: Text(
-                confirmText,
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w300,
+        return Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.transparent,
+          alignment: Alignment.bottomCenter,
+          child: CupertinoActionSheet(
+            title: title != null ? Text(title, style: TextStyle(color: Colors.black, fontSize: 20)) : null,
+            message: body != null ? Text(body, style: TextStyle(fontSize: 16)) : null,
+            actions: <Widget>[
+              CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.pop(context);
+                  c.complete(true);
+                },
+                child: Text(
+                  confirmText,
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ),
-            ),
-            FlatButton(
+            ],
+            cancelButton: CupertinoActionSheetAction(
               onPressed: () {
                 Navigator.pop(context);
                 c.complete(false);
@@ -69,12 +76,13 @@ class Dialogs {
               child: Text(
                 cancelText,
                 style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w300),
+                  color: Colors.red,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
             ),
-          ],
+          ),
         );
       },
     );
