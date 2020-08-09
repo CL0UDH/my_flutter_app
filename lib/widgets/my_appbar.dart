@@ -31,8 +31,8 @@ class MyAppbar extends StatelessWidget {
             padding: EdgeInsets.all(15),
           ),
           Text(
-            "LOGO",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            "PLACEHOLDER",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           CupertinoButton(
             onPressed: onRightClick,
