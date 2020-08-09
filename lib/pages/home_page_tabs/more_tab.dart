@@ -24,9 +24,10 @@ class _MoreTabState extends State<MoreTab> {
   _confirm() async {
     final isOk = await Dialogs.confirm(
       context,
+      title: "ACCIÓN REQUERIDA",
       body: "Está seguro que desea salir de su cuenta?",
     );
-
+    print("isOk $isOk");
     if (isOk) {
       _logOut();
     }
