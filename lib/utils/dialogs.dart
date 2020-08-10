@@ -50,8 +50,13 @@ class Dialogs {
           color: Colors.transparent,
           alignment: Alignment.bottomCenter,
           child: CupertinoActionSheet(
-            title: title != null ? Text(title, style: TextStyle(color: Colors.black, fontSize: 20)) : null,
-            message: body != null ? Text(body, style: TextStyle(fontSize: 16)) : null,
+            title: title != null
+                ? Text(title,
+                    style: TextStyle(color: Colors.black, fontSize: 20))
+                : null,
+            message: body != null
+                ? Text(body, style: TextStyle(fontSize: 16))
+                : null,
             actions: <Widget>[
               CupertinoActionSheetAction(
                 onPressed: () {
@@ -88,5 +93,134 @@ class Dialogs {
     );
 
     return c.future;
+  }
+
+  static void input(
+    BuildContext context, {
+    String label,
+    String placeholder,
+    @required void Function(String) onOk,
+  }) {
+    String text = "";
+    showCupertinoDialog(
+      context: context,
+      builder: (_) {
+        return CupertinoAlertDialog(
+          title: label != null ? Text(label) : null,
+          content: CupertinoTextField(
+            onChanged: (String _text) {
+              text = _text;
+            },
+            placeholder: placeholder,
+          ),
+          actions: <Widget>[
+            CupertinoButton(
+              child: Text("Aceptar"),
+              onPressed: () {
+                Navigator.pop(context);
+                onOk(text);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void inputEmail(
+    BuildContext context, {
+    String label,
+    String placeholder,
+    @required void Function(String) onOk,
+  }) {
+    showCupertinoDialog(
+      context: context,
+      builder: (_) {
+        return CupertinoAlertDialog(
+          title: label != null
+              ? Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 10,
+                  ),
+                  child: Text(label),
+                )
+              : null,
+          content: InputEmail(
+            placeholer: placeholder,
+            onOk: (text) {
+              if (onOk != null) {
+                onOk(text);
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+class InputEmail extends StatefulWidget {
+  final String placeholer;
+  final void Function(String) onOk;
+  InputEmail({Key key, this.placeholer, @required this.onOk}) : super(key: key);
+
+  @override
+  _InputEmailState createState() => _InputEmailState();
+}
+
+class _InputEmailState extends State<InputEmail> {
+  String _email = '';
+  bool _validate() {
+    return _email.contains('@');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isValid = _validate();
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          CupertinoTextField(
+            onChanged: (String text) {
+              _email = text;
+              _validate();
+              setState(() {});
+            },
+            keyboardType: TextInputType.emailAddress,
+            placeholder: widget.placeholer,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: FlatButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    "Cancelar",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: FlatButton(
+                  onPressed: isValid
+                      ? () {
+                          Navigator.pop(context);
+                          widget.onOk(_email);
+                        }
+                      : null,
+                  child: Text("Aceptar",
+                      style: TextStyle(color: isValid ? Colors.blue : null)),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -15,6 +15,7 @@ class MoreTab extends StatefulWidget {
 }
 
 class _MoreTabState extends State<MoreTab> {
+  String _currentEmail = "e@e.com";
   _logOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -32,6 +33,19 @@ class _MoreTabState extends State<MoreTab> {
     if (isOk) {
       _logOut();
     }
+  }
+
+  _setEmail() {
+    Dialogs.inputEmail(
+      context,
+      onOk: (String text) {
+        print("input dialog $text");
+        _currentEmail = text;
+        setState(() {});
+      },
+      label: "Ingrese un email",
+      placeholder: "example@domain.com",
+    );
   }
 
   @override
@@ -68,9 +82,9 @@ class _MoreTabState extends State<MoreTab> {
             LeftRightIconButton(
               label: 'Email',
               leftIcon: 'assets/icons/color-email.svg',
-              onPressed: _confirm,
+              onPressed: _setEmail,
               rightContent: Text(
-                "e@e.com",
+                _currentEmail,
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -90,7 +104,10 @@ class _MoreTabState extends State<MoreTab> {
               label: 'Notificaciones Push',
               leftIcon: 'assets/icons/bell.svg',
               onPressed: _confirm,
-              rightContent: Text("Activado", style: TextStyle(letterSpacing: 0.5),),
+              rightContent: Text(
+                "Activado",
+                style: TextStyle(letterSpacing: 0.5),
+              ),
             ),
             LeftRightIconButton(
               label: 'Cerrar sesión',
