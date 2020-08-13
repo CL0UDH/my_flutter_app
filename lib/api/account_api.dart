@@ -11,7 +11,7 @@ class AccountApi {
           "email": email,
           "password": password,
         }),
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
@@ -23,6 +23,32 @@ class AccountApi {
     } catch (e) {
       print(e);
       return false;
+    }
+  }
+
+  Future<List<dynamic>> getUsers(int page) async {
+    try {
+      final http.Response response = await http.get(
+        url + "users?page=$page&delay=3",
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final dynamic parsed = jsonDecode(response.body);
+        print(parsed['data']);
+        return parsed['data'];
+      } else {
+
+        final error = [
+          {
+            "error": response.statusCode,
+          }
+        ];
+        return error;
+      }
+    } catch (e) {
+      print(e);
+      return [];
     }
   }
 }
